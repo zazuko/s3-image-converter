@@ -36,6 +36,9 @@ echo "The stack is ready! :)"
 print_step "Create bucket and put an image there"
 docker-compose up init
 
+print_step "Convert images"
+docker-compose up converter
+
 print_step "Remove the stack"
 docker-compose down
 

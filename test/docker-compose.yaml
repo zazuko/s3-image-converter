@@ -21,3 +21,7 @@ services:
   init:
     build: ./init
     restart: "no"
+
+  converter:
+    build: ..
+    restart: "no"
