@@ -21,7 +21,15 @@ services:
   init:
     build: ./init
     restart: "no"
+    environment:
+      - S3_ENDPOINT=http://s3:8080
+      - S3_ACCESS_KEY=admin
+      - S3_SECRET_KEY=thisisasecret
 
   converter:
     build: ..
     restart: "no"
+    environment:
+      - S3_ENDPOINT=http://s3:8080
+      - S3_ACCESS_KEY=admin
+      - S3_SECRET_KEY=thisisasecret

@@ -6,7 +6,7 @@ set -e
 mc --version
 
 # configure connection to the S3 bucket
-mc alias set s3endpoint http://s3:8080 admin thisisasecret
+mc alias set s3endpoint "${S3_ENDPOINT}" "${S3_ACCESS_KEY}" "${S3_SECRET_KEY}"
 
 # create a bucket
 mc mb s3endpoint/bucket

@@ -7,7 +7,7 @@ convert -version
 mc --version
 
 # configure connection to the S3 bucket
-mc alias set s3endpoint http://s3:8080 admin thisisasecret
+mc alias set s3endpoint "${S3_ENDPOINT}" "${S3_ACCESS_KEY}" "${S3_SECRET_KEY}"
 mc tree -f s3endpoint/bucket
 
 mc find s3endpoint/bucket -name '*.tif' --json | jq

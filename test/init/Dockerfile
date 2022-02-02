@@ -11,4 +11,10 @@ RUN mc --version
 WORKDIR /app
 COPY entrypoint.sh image.tif ./
 RUN chmod +x entrypoint.sh
+
+# configure default values for environment variables
+ENV S3_ENDPOINT="http://s3:8080"
+ENV S3_ACCESS_KEY="admin"
+ENV S3_SECRET_KEY="thisisasecret"
+
 CMD [ "tini", "--", "/app/entrypoint.sh" ]
