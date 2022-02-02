@@ -17,5 +17,7 @@ services:
       - MINIO_SERVER_URL=http://localhost:8080
       - MINIO_ROOT_USER=admin
       - MINIO_ROOT_PASSWORD=thisisasecret
-    volumes:
-      - ./volumes/s3:/data
+
+  init:
+    build: ./init
+    restart: "no"

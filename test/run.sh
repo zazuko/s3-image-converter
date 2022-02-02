@@ -13,7 +13,7 @@ docker-compose pull
 docker-compose build
 
 print_step "Start the stack"
-docker-compose up --remove-orphans -d
+docker-compose up --remove-orphans -d s3
 
 print_step "Wait that the stack is ready"
 RETRIES=60
@@ -34,10 +34,7 @@ done
 echo "The stack is ready! :)"
 
 print_step "Create bucket and put an image there"
-docker-compose \
-  -f docker-compose.yaml \
-  -f init/docker-compose.yaml \
-  up --remove-orphans --build init
+docker-compose up init
 
 print_step "Remove the stack"
 docker-compose down
