@@ -1,5 +1,18 @@
 # S3 Image Converter
 
+## Use case
+
+This work is meant if you need to convert one file format to another one in a S3 bucket.
+Once the conversion finish, the container will stop.
+
+You can imagine running this as a cronjob.
+
+You can pull the Docker image like this:
+
+```sh
+docker pull ghcr.io/zazuko/s3-image-converter:latest
+```
+
 ## Configuration
 
 Configuration can be done using the following environment variables:
