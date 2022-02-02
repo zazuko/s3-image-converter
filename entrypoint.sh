@@ -20,7 +20,7 @@ cd tmp-work-dir
 mc alias set s3endpoint "${S3_ENDPOINT}" "${S3_ACCESS_KEY}" "${S3_SECRET_KEY}"
 
 # loop over each file
-IMAGES_FILES=$(mc find s3endpoint/bucket -name "*.${IMAGE_FROM}" --json | jq -r '.key | @sh')
+IMAGES_FILES=$(mc find "s3endpoint/${S3_BUCKET}" -name "*.${IMAGE_FROM}" --json | jq -r '.key | @sh')
 for file in $IMAGES_FILES; do
   f=$(echo "${file}" | sed 's/^\x27\(.*\)\x27$/\1/')
   TMP_SRC_FILE="image.${IMAGE_FROM}"

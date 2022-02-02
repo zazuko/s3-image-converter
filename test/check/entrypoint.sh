@@ -7,7 +7,7 @@ mc --version
 mc alias set s3endpoint "${S3_ENDPOINT}" "${S3_ACCESS_KEY}" "${S3_SECRET_KEY}"
 
 # list files
-TREE=$(mc tree -f s3endpoint/bucket)
+TREE=$(mc tree -f "s3endpoint/${S3_BUCKET}")
 
 echo "${TREE}" | grep "tif" 2>&1 > /dev/null
 if [ "$?" -eq 0 ]; then

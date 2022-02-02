@@ -9,13 +9,13 @@ mc --version
 mc alias set s3endpoint "${S3_ENDPOINT}" "${S3_ACCESS_KEY}" "${S3_SECRET_KEY}"
 
 # create a bucket
-mc mb s3endpoint/bucket
+mc mb "s3endpoint/${S3_BUCKET}"
 
 # add an image
-mc cp image.tif s3endpoint/bucket
-mc cp image.tif s3endpoint/bucket/subdir/other.tif
+mc cp image.tif "s3endpoint/${S3_BUCKET}"
+mc cp image.tif "s3endpoint/${S3_BUCKET}/subdir/other.tif"
 
 # list files
-mc tree -f s3endpoint/bucket
+mc tree -f "s3endpoint/${S3_BUCKET}"
 
 exit 0

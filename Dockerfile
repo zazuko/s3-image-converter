@@ -20,5 +20,6 @@ ENV S3_SECRET_KEY="thisisasecret"
 ENV IMAGE_FROM="tif"
 ENV IMAGE_TO="jp2"
 ENV REMOVE_SOURCE_IMAGE="false"
+ENV S3_BUCKET="bucket"
 
 CMD [ "tini", "--", "/app/entrypoint.sh" ]
