@@ -24,4 +24,30 @@ jobs:
       - name: Run tests
         run: cd test && ./run.sh && cd ..
 
-    # TODO: build and push Docker image
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker meta
+        uses: zazuko/action-docker-meta@main
+        id: docker_meta
+        with:
+          images: ghcr.io/zazuko/s3-image-converter
+
+      - name: Build and push Docker images
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.docker_meta.outputs.tags }}
+          labels: ${{ steps.docker_meta.outputs.labels }}
+          platforms: |
+            linux/amd64
+            linux/arm64
+            linux/ppc64le
+            linux/s390x
