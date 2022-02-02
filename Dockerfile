@@ -17,5 +17,7 @@ RUN chmod +x entrypoint.sh
 ENV S3_ENDPOINT="http://s3:8080"
 ENV S3_ACCESS_KEY="admin"
 ENV S3_SECRET_KEY="thisisasecret"
+ENV IMAGE_FROM="tif"
+ENV IMAGE_TO="jp2"
 
 CMD [ "tini", "--", "/app/entrypoint.sh" ]
