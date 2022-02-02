@@ -13,8 +13,9 @@ mc mb s3://test/test
 
 # add an image
 mc cp image.tif s3://test/test
+mc cp image.tif s3://test/test/subdir/other.tif
 
 # list files
-mc ls s3://test/test
+mc tree -f s3://test/test
 
 exit 0
