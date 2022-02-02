@@ -1,5 +1,7 @@
 #!/bin/sh
 
+FAILURE=0
+
 echo "Test the Docker image"
 
 # display steps with date and time
@@ -39,7 +41,20 @@ docker-compose up init
 print_step "Convert images"
 docker-compose up converter
 
+print_step "Check results"
+docker-compose up check
+LOGS=$(docker-compose logs check)
+echo "${LOGS}" | sed 's/.*\(ERROR:.*\)$/\1/g' | grep "ERROR"
+if [ "$?" -eq 0 ]; then
+  FAILURE=1
+fi
+
+echo "${LOGS}" | grep "SUCCESS" 2>&1 > /dev/null
+if [ "$?" -ne 0 ]; then
+  FAILURE=1
+fi
+
 print_step "Remove the stack"
 docker-compose down
 
-exit 0
+exit "${FAILURE}"
