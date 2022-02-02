@@ -19,5 +19,6 @@ ENV S3_ACCESS_KEY="admin"
 ENV S3_SECRET_KEY="thisisasecret"
 ENV IMAGE_FROM="tif"
 ENV IMAGE_TO="jp2"
+ENV REMOVE_SOURCE_IMAGE="false"
 
 CMD [ "tini", "--", "/app/entrypoint.sh" ]

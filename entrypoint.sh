@@ -40,6 +40,10 @@ for file in $IMAGES_FILES; do
     echo "    - ${FILE_PREFIX}${FILE_SUFFIX}"
     mc cp "${generated_file}" "${FINAL_FILE_NAME}"
     rm -f "${generated_file}"
+
+    if [ "${REMOVE_SOURCE_IMAGE}" = "true" ]; then
+      mc rm --force "${f}"
+    fi
   done
 done
 
