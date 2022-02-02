@@ -13,7 +13,7 @@ docker-compose pull
 docker-compose build
 
 print_step "Start the stack"
-docker-compose up -d
+docker-compose up --remove-orphans -d
 
 print_step "Wait that the stack is ready"
 RETRIES=60
@@ -32,6 +32,12 @@ while true; do
   sleep 1
 done
 echo "The stack is ready! :)"
+
+print_step "Create bucket and put an image there"
+docker-compose \
+  -f docker-compose.yaml \
+  -f init/docker-compose.yaml \
+  up --remove-orphans --build init
 
 print_step "Remove the stack"
 docker-compose down
