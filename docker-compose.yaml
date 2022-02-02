@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  s3:
+    image: docker.io/minio/minio:latest
+    command:
+      - server
+      - /data
+      - --address=[::]:8080
+      - --console-address=[::]:9001
+    ports:
+      - 8080:8080
+      - 9001:9001
+    environment:
+      - MINIO_PROMETHEUS_AUTH_TYPE=public
+      - MINIO_BROWSER_REDIRECT_URL=http://localhost:9001
+      - MINIO_SERVER_URL=http://localhost:8080
+      - MINIO_ROOT_USER=admin
+      - MINIO_ROOT_PASSWORD=thisisasecret
+    volumes:
+      - ./volumes/s3:/data
