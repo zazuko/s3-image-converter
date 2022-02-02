@@ -2,7 +2,7 @@ FROM docker.io/minio/mc:latest AS minio
 
 FROM docker.io/library/alpine:3.15
 COPY --from=minio /bin/mc /bin
-RUN apk add --no-cache imagemagick tini
+RUN apk add --no-cache imagemagick jq tini
 
 # only here to test that required binaries are available
 RUN convert -version
